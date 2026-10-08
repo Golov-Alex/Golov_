@@ -23,5 +23,20 @@ namespace Golov_.Forms
             form.Show();
             Close();
         }
+
+        private void bookBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.bookBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.librDBDataSet);
+
+        }
+
+        private void UserForm_Load(object sender, EventArgs e)
+        {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "librDBDataSet.Book". При необходимости она может быть перемещена или удалена.
+            this.bookTableAdapter.Fill(this.librDBDataSet.Book);
+
+        }
     }
 }
