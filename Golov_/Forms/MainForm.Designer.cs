@@ -118,36 +118,37 @@
             this.panelCaptch.Name = "panelCaptch";
             this.panelCaptch.Size = new System.Drawing.Size(800, 450);
             this.panelCaptch.TabIndex = 6;
+            this.panelCaptch.Visible = false;
             // 
             // pictureBoxCaptch4
             // 
-            this.pictureBoxCaptch4.Location = new System.Drawing.Point(380, 147);
+            this.pictureBoxCaptch4.Location = new System.Drawing.Point(379, 147);
             this.pictureBoxCaptch4.Name = "pictureBoxCaptch4";
-            this.pictureBoxCaptch4.Size = new System.Drawing.Size(100, 100);
+            this.pictureBoxCaptch4.Size = new System.Drawing.Size(134, 124);
             this.pictureBoxCaptch4.TabIndex = 5;
             this.pictureBoxCaptch4.TabStop = false;
             // 
             // pictureBoxCaptch3
             // 
-            this.pictureBoxCaptch3.Location = new System.Drawing.Point(280, 147);
+            this.pictureBoxCaptch3.Location = new System.Drawing.Point(246, 147);
             this.pictureBoxCaptch3.Name = "pictureBoxCaptch3";
-            this.pictureBoxCaptch3.Size = new System.Drawing.Size(100, 100);
+            this.pictureBoxCaptch3.Size = new System.Drawing.Size(134, 124);
             this.pictureBoxCaptch3.TabIndex = 4;
             this.pictureBoxCaptch3.TabStop = false;
             // 
             // pictureBoxCaptch2
             // 
-            this.pictureBoxCaptch2.Location = new System.Drawing.Point(380, 47);
+            this.pictureBoxCaptch2.Location = new System.Drawing.Point(379, 29);
             this.pictureBoxCaptch2.Name = "pictureBoxCaptch2";
-            this.pictureBoxCaptch2.Size = new System.Drawing.Size(100, 100);
+            this.pictureBoxCaptch2.Size = new System.Drawing.Size(134, 118);
             this.pictureBoxCaptch2.TabIndex = 3;
             this.pictureBoxCaptch2.TabStop = false;
             // 
             // pictureBoxCaptch1
             // 
-            this.pictureBoxCaptch1.Location = new System.Drawing.Point(280, 47);
+            this.pictureBoxCaptch1.Location = new System.Drawing.Point(246, 29);
             this.pictureBoxCaptch1.Name = "pictureBoxCaptch1";
-            this.pictureBoxCaptch1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBoxCaptch1.Size = new System.Drawing.Size(134, 118);
             this.pictureBoxCaptch1.TabIndex = 2;
             this.pictureBoxCaptch1.TabStop = false;
             // 

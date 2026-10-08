@@ -1,4 +1,5 @@
-﻿using Golov_.Model;
+﻿using Golov_.Forms;
+using Golov_.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,7 @@ namespace Golov_
         }
 
         //Список картинок капчи. Хранит порядок отображения изображений.
-        private List<int> list = new List<int>() {3, 4, 1, 2};
+        private List<int> pictures = new List<int>() {3, 4, 1, 2};
 
         //Модель Entity Framework для работы с базой данных
         private ModelEF modelEF = new ModelEF();
@@ -57,7 +58,7 @@ namespace Golov_
                     users.BadLoginTry += 1;
                     modelEF.SaveChanges();
                     MessageBox.Show($"Вы не правильно ввели пароль. У вас осталось попыток {3 - users.BadLoginTry}");
-                    if (users.BadLoginTry == 3 || users.BadLoginTry > 3)
+                    if (users.BadLoginTry >= 3)
                     {
                         users.Status = "Blocked";
                         modelEF.SaveChanges();
@@ -72,25 +73,62 @@ namespace Golov_
         }
         private void LoadPictures() 
         {
-            pictureBoxCaptch1.Image = Image.FromFile($@"Pictures\{1}.png");
-            pictureBoxCaptch2.Image = Image.FromFile($@"Pictures\{2}.png");
-            pictureBoxCaptch3.Image = Image.FromFile($@"Pictures\{3}.png");
-            pictureBoxCaptch4.Image = Image.FromFile($@"Pictures\{4}.png");
+            pictureBoxCaptch1.Image = Image.FromFile($@"Pictures\p{pictures[0]}.png");
+            pictureBoxCaptch2.Image = Image.FromFile($@"Pictures\p{pictures[1]}.png");
+            pictureBoxCaptch3.Image = Image.FromFile($@"Pictures\p{pictures[2]}.png");
+            pictureBoxCaptch4.Image = Image.FromFile($@"Pictures\p{pictures[3]}.png");
 
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            LoadPictures();
         }
 
         private void NextButton_Click(object sender, EventArgs e)
         {
-
+            int first = pictures[0];
+            pictures[0] = pictures[1];
+            pictures[1] = pictures[2];
+            pictures[2] = pictures[3];
+            pictures[3] = first;
+            LoadPictures();
         }
 
         private void ReadyButton_Click(object sender, EventArgs e)
         {
+            if (pictures[0] == 1)
+            {
+                panelCaptch.Visible = false;
 
+                if (users.role == "reader")
+                {
+                    UserForm userForm = new UserForm();
+                    userForm.Show();
+                    Hide();
+                }
+                else if (users.role == "librarian")
+                {
+                    AdminForm adminForm = new AdminForm();
+                    adminForm.Show();
+                    Hide();
+                }
+                users.BadLoginTry = 0;
+                modelEF.SaveChanges();
+                MessageBox.Show("Вы успешно авторизовались");
+            }
+            else
+            {
+                users.BadLoginTry += 1;
+                modelEF.SaveChanges();
+                MessageBox.Show($"Каптча не правильно собрана. У вас осталось попыток {3 - users.BadLoginTry}");
+                if (users.BadLoginTry >= 3)
+                {
+                    users.Status = "Blocked";
+                    modelEF.SaveChanges();
+                    MessageBox.Show("Вы заблокированы! Обратитесь к библиотекарю");
+                    panelCaptch.Visible = false;
+                }
+            }
         }
     }
 }
